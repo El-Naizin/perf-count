@@ -2,8 +2,8 @@ pub mod error;
 pub mod event;
 
 use cfg_if::cfg_if;
-use error::PerfCounterError;
-use crate::error::PerfCounterBuilderError;
+pub use error::PerfCounterError;
+pub use crate::error::PerfCounterBuilderError;
 use crate::event::Event;
 
 cfg_if! {
@@ -27,7 +27,7 @@ mod tests {
     fn test_build_cycle_counter() {
         let builder = PerfCounterBuilder::new();
         let x = builder.set_target_event(Event::CPUCycles).unwrap();
-        let counter = x.build().unwrap();
+        let _counter = x.build().unwrap();
         // let counter = builder.set_target_event(Event::CPUCycles).unwrap().build().unwrap();
     }
 }

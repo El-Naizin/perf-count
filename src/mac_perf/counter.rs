@@ -1,7 +1,5 @@
 use crate::error::PerfCounterError;
-use crate::PerfCounter;
 use kperf_rs;
-use kperf_rs::PerfCounterBuilder;
 
 pub struct MacCounter {
     counter: kperf_rs::PerfCounter,

@@ -1,6 +1,5 @@
 use crate::error::PerfCounterBuilderError;
 use crate::event::Event;
-use crate::{PerfCounter, PerfCounterBuilder};
 use kperf_rs::event::Event as Kevent;
 use crate::mac_perf::MacCounter;
 
@@ -21,7 +20,7 @@ impl MacCounterBuilder {
         Ok(self)
     }
 
-    pub fn build(mut self) -> Result<MacCounter, PerfCounterBuilderError> {
+    pub fn build(self) -> Result<MacCounter, PerfCounterBuilderError> {
         let counter = self.mac_builder.build_counter()?;
         let perf_counter: MacCounter = counter.into();
         Ok(perf_counter)
