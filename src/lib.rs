@@ -24,10 +24,24 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_build_cycle_counter() {
+    fn test_cycle_counter() {
         let builder = PerfCounterBuilder::new();
         let x = builder.set_target_event(Event::CPUCycles).unwrap();
-        let _counter = x.build().unwrap();
-        // let counter = builder.set_target_event(Event::CPUCycles).unwrap().build().unwrap();
+        let mut counter = x.build().unwrap();
+        counter.start().expect("Couldn't start counter");
+        counter.stop().expect("Couldn't stop counter");
+        let result = counter.read().expect("Couldn't read counter");
+        assert_ne!(result, 0, "Cycle count shouldn't be zero");
+    }
+
+    #[test]
+    fn test_unimplemented_counter() {
+        let builder = PerfCounterBuilder::new();
+        let x = builder.set_target_event(Event::CacheReferences).unwrap();
+        let mut counter = x.build().unwrap();
+        counter.start().expect("Couldn't start counter");
+        counter.stop().expect("Couldn't stop counter");
+        let result = counter.read().expect("Couldn't read counter");
+        assert_ne!(result, 0, "Cycle count shouldn't be zero");
     }
 }
