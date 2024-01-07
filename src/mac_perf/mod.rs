@@ -3,4 +3,5 @@ pub mod counter;
 mod event;
 mod error;
 
-pub use builder::CounterBuilder;
+pub use builder::MacCounterBuilder;
+pub use counter::MacCounter;

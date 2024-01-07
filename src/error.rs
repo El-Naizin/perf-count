@@ -13,6 +13,7 @@ pub enum PerfCounterBuilderError {
 #[derive(Debug)]
 pub enum PerfCounterError {
     IO(io::Error),
+    Unknown(String),
 }
 
 impl fmt::Display for PerfCounterError {
