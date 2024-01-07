@@ -1,10 +1,10 @@
 pub mod error;
 pub mod event;
 
-use cfg_if::cfg_if;
-pub use error::PerfCounterError;
 pub use crate::error::PerfCounterBuilderError;
 use crate::event::Event;
+use cfg_if::cfg_if;
+pub use error::PerfCounterError;
 
 cfg_if! {
     if #[cfg(target_os="macos")] {
@@ -13,8 +13,8 @@ cfg_if! {
         pub type PerfCounterBuilder = mac_perf::MacCounterBuilder;
     } else if #[cfg(target_os="linux")] {
         mod linux_perf;
-        pub type PerfCounter = linux_perf::Counter;
-        pub type PerfCounterBuilder = linux_perf::CounterBuilder;
+        pub type PerfCounter = linux_perf::LinuxCounter;
+        pub type PerfCounterBuilder = linux_perf::LinuxCounterBuilder;
     }
 }
 

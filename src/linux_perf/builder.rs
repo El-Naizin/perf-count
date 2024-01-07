@@ -1,22 +1,30 @@
 use crate::error::PerfCounterBuilderError;
 use crate::event::Event;
-use crate::{PerfCounter, PerfCounterBuilder};
+use crate::linux_perf::LinuxCounter;
 
-pub struct CounterBuilder {
+pub struct LinuxCounterBuilder {
+    // mac_builder: kperf_rs::PerfCounterBuilder,
 }
 
-impl CounterBuilder {
+impl LinuxCounterBuilder {
     pub fn new() -> Self {
-        Self {}
+        todo!();
+        // Self {
+        //     // mac_builder: kperf_rs::PerfCounterBuilder::new(),
+        // }
     }
-}
 
-impl PerfCounterBuilder for CounterBuilder {
-    fn set_target_event(&mut self, event: Event) -> Result<Box<dyn PerfCounterBuilder>, PerfCounterBuilderError> {
+    pub fn set_target_event(mut self, event: Event) -> Result<Self, PerfCounterBuilderError> {
+        // let kperf_event: Kevent = event.try_into()?;
+        // self.mac_builder = self.mac_builder.track_event(kperf_event);
+        // Ok(self)
         todo!()
     }
 
-    fn build(self) -> Result<Box<dyn PerfCounter>, PerfCounterBuilderError> {
+    pub fn build(self) -> Result<LinuxCounter, PerfCounterBuilderError> {
+        // let counter = self.mac_builder.build_counter()?;
+        // let perf_counter: LinuxCounterBuilder = counter.into();
+        // Ok(perf_counter)
         todo!()
     }
 }

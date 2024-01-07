@@ -1,7 +1,7 @@
 use crate::error::PerfCounterBuilderError;
 use crate::event::Event;
-use kperf_rs::event::Event as Kevent;
 use crate::mac_perf::MacCounter;
+use kperf_rs::event::Event as Kevent;
 
 pub struct MacCounterBuilder {
     mac_builder: kperf_rs::PerfCounterBuilder,

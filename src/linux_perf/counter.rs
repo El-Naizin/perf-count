@@ -1,23 +1,31 @@
 use crate::error::PerfCounterError;
-use crate::PerfCounter;
 
-pub struct Counter {
-}
+pub struct LinuxCounter {}
 
-impl PerfCounter for Counter {
-    fn reset(&self) -> Result<(), PerfCounterError> {
+impl LinuxCounter {
+    pub fn reset(&mut self) -> Result<(), PerfCounterError> {
+        // Ok(self.counter.reset())
         todo!()
     }
 
-    fn start(&self) -> Result<(), PerfCounterError> {
+    pub fn start(&mut self) -> Result<(), PerfCounterError> {
+        // match self.counter.start() {
+        //     Ok(_) => Ok(()),
+        //     Err(_) => Err(PerfCounterError::Unknown("TODO: error message".to_string())),
+        // }
         todo!()
     }
 
-    fn stop(&self) -> Result<(), PerfCounterError> {
+    pub fn stop(&mut self) -> Result<(), PerfCounterError> {
+        // match self.counter.stop() {
+        //     Ok(_) => Ok(()),
+        //     Err(_) => Err(PerfCounterError::Unknown("TODO: error message 2".to_string())),
+        // }
         todo!()
     }
 
-    fn read(&mut self) -> Result<u64, PerfCounterError> {
+    pub fn read(&mut self) -> Result<u64, PerfCounterError> {
+        // Ok(self.counter.read())
         todo!()
     }
 }

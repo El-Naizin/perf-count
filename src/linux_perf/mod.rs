@@ -1,4 +1,5 @@
 pub mod builder;
 pub mod counter;
 
-pub use builder::CounterBuilder;
+pub use builder::LinuxCounterBuilder;
+pub use counter::LinuxCounter;

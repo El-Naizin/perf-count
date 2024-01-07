@@ -1,7 +1,7 @@
-use std::{error, fmt, io};
+use crate::event::Event;
 use std::error::Error;
 use std::fmt::{Debug, Formatter};
-use crate::event::Event;
+use std::{error, fmt, io};
 
 #[derive(Debug)]
 pub enum PerfCounterBuilderError {
@@ -19,8 +19,12 @@ pub enum PerfCounterError {
 impl fmt::Display for PerfCounterError {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         match self {
-            PerfCounterError::IO(e) => {write!(f, "IO Error: {}", e)},
-            PerfCounterError::Unknown(description) => {write!(f, "Unknown Error: {}", description)}
+            PerfCounterError::IO(e) => {
+                write!(f, "IO Error: {}", e)
+            }
+            PerfCounterError::Unknown(description) => {
+                write!(f, "Unknown Error: {}", description)
+            }
         }
     }
 }
@@ -28,8 +32,8 @@ impl fmt::Display for PerfCounterError {
 impl error::Error for PerfCounterError {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
-            PerfCounterError::IO(err) => { Some(err)}
-            PerfCounterError::Unknown(_) => { None }
+            PerfCounterError::IO(err) => Some(err),
+            PerfCounterError::Unknown(_) => None,
         }
     }
 }

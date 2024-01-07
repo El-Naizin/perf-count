@@ -20,7 +20,9 @@ impl MacCounter {
     pub fn stop(&mut self) -> Result<(), PerfCounterError> {
         match self.counter.stop() {
             Ok(_) => Ok(()),
-            Err(_) => Err(PerfCounterError::Unknown("TODO: error message 2".to_string())),
+            Err(_) => Err(PerfCounterError::Unknown(
+                "TODO: error message 2".to_string(),
+            )),
         }
     }
 
@@ -31,9 +33,6 @@ impl MacCounter {
 
 impl From<kperf_rs::PerfCounter> for MacCounter {
     fn from(value: kperf_rs::PerfCounter) -> Self {
-        Self {
-            counter: value,
-        }
+        Self { counter: value }
     }
 }
-
