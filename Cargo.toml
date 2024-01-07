@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 
-[target.'cfg(macos)'.dependencies]
+[target.'cfg(target_os = "macos")'.dependencies]
 kperf-rs = "0.1.0"
 
 [target.'cfg(linux)'.dependencies]

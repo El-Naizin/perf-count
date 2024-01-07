@@ -16,9 +16,9 @@ pub fn create_counter_builder() -> Box<dyn PerfCounterBuilder> {
 
 //TODO: demo different execution on mac and linux
 pub trait PerfCounterBuilder {
-    fn set_target_event(&mut self, event: Event) -> Result<Box<dyn PerfCounterBuilder>, PerfCounterBuilderError>;
+    fn set_target_event(self: Box<Self>, event: Event) -> Result<Box<dyn PerfCounterBuilder>, PerfCounterBuilderError>;
 
-    fn build(self) -> Result<Box<dyn PerfCounter>, PerfCounterBuilderError>;
+    fn build(self: Box<Self>) -> Result<Box<dyn PerfCounter>, PerfCounterBuilderError>;
 }
 
 /// Abstract trait to control performance counters.
@@ -36,3 +36,16 @@ pub trait PerfCounter {
     fn read(&mut self) -> Result<u64, PerfCounterError>;
 }
 
+#[cfg(test)]
+mod tests {
+    // Note this useful idiom: importing names from outer (for mod tests) scope.
+    use super::*;
+
+    #[test]
+    fn test_build_cycle_counter() {
+        let builder = create_counter_builder();
+        let x = builder.set_target_event(Event::CPUCycles).unwrap();
+        let counter = x.build().unwrap();
+        // let counter = builder.set_target_event(Event::CPUCycles).unwrap().build().unwrap();
+    }
+}

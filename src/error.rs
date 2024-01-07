@@ -1,10 +1,12 @@
 use std::{error, fmt, io};
 use std::error::Error;
 use std::fmt::{Debug, Formatter};
+use crate::event::Event;
 
 #[derive(Debug)]
 pub enum PerfCounterBuilderError {
-    UnsupportedCounterType,
+    UnsupportedCounterType(Event),
+    BuildError(String),
 }
 
 /// Possible Errors when using a valid performance counter
