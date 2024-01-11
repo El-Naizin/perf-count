@@ -20,4 +20,7 @@ pub enum Event {
 
     /// Mispredicted branch instructions.
     BranchMisses,
+
+    /// This counts context switches.
+    ContextSwitches,
 }

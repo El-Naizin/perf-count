@@ -11,7 +11,7 @@ impl TryFrom<Event> for Kevent {
             Event::Instructions => Ok(Kevent::Instructions),
             Event::BranchInstructions => Ok(Kevent::Branches),
             Event::BranchMisses => Ok(Kevent::BranchMisses),
-            Event::CacheReferences | Event::CacheMisses => {
+            Event::CacheReferences | Event::CacheMisses | Event::ContextSwitches => {
                 Err(PerfCounterBuilderError::UnsupportedCounterType(value))
             }
         }

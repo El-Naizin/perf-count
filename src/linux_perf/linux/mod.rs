@@ -166,6 +166,7 @@ impl TryFrom<crate::event::Event> for SoftwareEventType {
 
     fn try_from(value: crate::event::Event) -> Result<Self, Self::Error> {
         match value {
+            ContextSwitches => Ok(Self::ContextSwitches),
             x => Err(PerfCounterBuilderError::UnsupportedCounterType(x)),
         }
     }
