@@ -25,8 +25,6 @@ impl LinuxCounter {
 
 impl From<PerfCounter> for LinuxCounter {
     fn from(value: PerfCounter) -> Self {
-        Self {
-            counter: value,
-        }
+        Self { counter: value }
     }
 }

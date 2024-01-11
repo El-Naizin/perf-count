@@ -17,17 +17,13 @@ impl LinuxCounterBuilder {
     pub fn set_target_event(mut self, event: Event) -> Result<Self, PerfCounterBuilderError> {
         let hardware_event = <HardwareEventType>::try_from(event.clone());
         match hardware_event {
-            Ok(evt) => {
-                Ok( Self {
-                    linux_builder: self.linux_builder.set_hardware_event(evt),
-                })
-            }
+            Ok(evt) => Ok(Self {
+                linux_builder: self.linux_builder.set_hardware_event(evt),
+            }),
             Err(_) => match <SoftwareEventType>::try_from(event) {
-                Ok(evt) => {
-                    Ok( Self {
-                        linux_builder: self.linux_builder.set_software_event(evt),
-                    })
-                }
+                Ok(evt) => Ok(Self {
+                    linux_builder: self.linux_builder.set_software_event(evt),
+                }),
                 Err(e) => Err(e),
             },
         }
