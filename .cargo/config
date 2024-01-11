@@ -1,2 +1,1 @@
-[target.'cfg(target_os = "macos")']
 runner = 'sudo -E'
