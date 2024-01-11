@@ -10,6 +10,7 @@ impl From<PerfCounterBuilderError> for KperfError {
             PerfCounterBuilderError::BuildError(description) => {
                 KperfError::PerfCounterBuildError(description)
             }
+            PerfCounterBuilderError::IO(err) => KperfError::PermissionDenied,
         }
     }
 }
