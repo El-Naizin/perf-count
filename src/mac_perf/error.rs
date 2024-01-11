@@ -1,5 +1,7 @@
+use std::io::{Error, ErrorKind};
 use crate::error::PerfCounterBuilderError;
 use kperf_rs::error::KperfError;
+use crate::PerfCounterError;
 
 impl From<PerfCounterBuilderError> for KperfError {
     fn from(value: PerfCounterBuilderError) -> Self {
@@ -30,3 +32,14 @@ impl From<KperfError> for PerfCounterBuilderError {
         }
     }
 }
+
+impl From<KperfError> for PerfCounterError {
+    fn from(value: KperfError) -> Self {
+        match value {
+            KperfError::UnknownError(desc) => PerfCounterError::Unknown(desc),
+            KperfError::PermissionDenied => PerfCounterError::IO(Error::from(ErrorKind::PermissionDenied)),
+            KperfError::PerfCounterBuildError(desc) => PerfCounterError::Unknown(desc),
+        }
+    }
+}
+

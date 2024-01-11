@@ -17,7 +17,7 @@ libc = "0.2"
 thiserror = "1.0.56"
 
 [target.'cfg(target_os = "macos")'.dependencies]
-kperf-rs = "0.1.0"
+kperf-rs = "0.1.1"
 
 [target.'cfg(target_os = "linux")'.dependencies]
 mmap = "0.1.*"
