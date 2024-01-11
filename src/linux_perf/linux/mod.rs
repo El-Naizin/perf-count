@@ -267,39 +267,39 @@ impl PerfCounterBuilderLinux {
     // NYI
     //}
 
-    /// Instantiate a H/W performance counter using a hardware event as described in Intels SDM.
-    #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
-    pub fn from_intel_event_description(
-        counter: &x86::perfcnt::intel::EventDescription,
-    ) -> PerfCounterBuilderLinux {
-        use x86::perfcnt::intel::Tuple;
-        let mut pc: PerfCounterBuilderLinux = Default::default();
-        let mut config: u64 = 0;
-
-        match counter.event_code {
-            Tuple::One(code) => config |= (code as u64) << 0,
-            Tuple::Two(_, _) => unreachable!(), // NYI
-        };
-        match counter.umask {
-            Tuple::One(code) => config |= (code as u64) << 8,
-            Tuple::Two(_, _) => unreachable!(), // NYI
-        };
-        config |= (counter.counter_mask as u64) << 24;
-
-        if counter.edge_detect {
-            config |= 1 << 18;
-        }
-        if counter.any_thread {
-            config |= 1 << 21;
-        }
-        if counter.invert {
-            config |= 1 << 23;
-        }
-
-        pc.attrs.attr_type = perf_event::PERF_TYPE_RAW;
-        pc.attrs.config = config;
-        pc
-    }
+    // /// Instantiate a H/W performance counter using a hardware event as described in Intels SDM.
+    // #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
+    // pub fn from_intel_event_description(
+    //     counter: &x86::perfcnt::intel::EventDescription,
+    // ) -> PerfCounterBuilderLinux {
+    //     use x86::perfcnt::intel::Tuple;
+    //     let mut pc: PerfCounterBuilderLinux = Default::default();
+    //     let mut config: u64 = 0;
+    //
+    //     match counter.event_code {
+    //         Tuple::One(code) => config |= (code as u64) << 0,
+    //         Tuple::Two(_, _) => unreachable!(), // NYI
+    //     };
+    //     match counter.umask {
+    //         Tuple::One(code) => config |= (code as u64) << 8,
+    //         Tuple::Two(_, _) => unreachable!(), // NYI
+    //     };
+    //     config |= (counter.counter_mask as u64) << 24;
+    //
+    //     if counter.edge_detect {
+    //         config |= 1 << 18;
+    //     }
+    //     if counter.any_thread {
+    //         config |= 1 << 21;
+    //     }
+    //     if counter.invert {
+    //         config |= 1 << 23;
+    //     }
+    //
+    //     pc.attrs.attr_type = perf_event::PERF_TYPE_RAW;
+    //     pc.attrs.config = config;
+    //     pc
+    // }
 
     /// Set counter group.
     pub fn set_group(&mut self, group_fd: isize) -> &mut PerfCounterBuilderLinux {
