@@ -4,9 +4,9 @@ version = "0.1.0"
 edition = "2021"
 license = "MPL-2.0"
 description = "Simple use of performance counters with rust"
-repository = "https://github.com/El-Naizin/rust-kperf/tree/main"
-readme = "../README.md"
-keywords = ["ffi", "perf", "kperf", "kperfdata"]
+repository = "https://github.com/El-Naizin/perf-count"
+#readme = "README.md"
+keywords = ["perf", "Linux", "MacOS"]
 categories = ["development-tools::profiling"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
